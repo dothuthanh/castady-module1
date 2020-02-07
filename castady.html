@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study</title>
+    <script src="castady.js"></script>
+</head>
+<body>
+<h3 style="color: crimson">
+    Click để xem hình ảnh và thông tin sản phẩm của chúng tôi:
+</h3>
+<input type="button" id="login" value="Click" style="color: red" onclick="tkmk()">
+<style>
+    body{
+        background-color: beige;
+    }
+    td {
+        padding: 90px;
+        border: 2px solid red;
+    }
+    table#productList{
+        margin-top: 2px;
+    }
+</style>
+<h3 style="color: coral">
+    More products :
+</h3>
+<input id="add" type="text" size="50">
+<button style="color: coral" onclick="add()">Add</button>
+<br>
+<h2 style="color: brown">
+    Shop shoset:
+</h2>
+<img src="vans.jpg" style="width: 200px ;height: 200px">
+<img src="nike.jpg" style="width: 200px; height: 200px">
+<img src="yeezy%20700.jpg" style="width: 200px; height: 200px">
+<img src="alexander%20MCQueen.jpg" style="width: 200px;height: 200px">
+<img src="balenciaga.jpg" style="width: 200px; height: 200px">
+<h3 style="color: red">The Shoest :</h3>
+<table id ="productList"></table>
+<p id="abc"></p>
+<script>
+    let danhsach = ['Vans\n','Nike\n','Yeezy 700\n','Alexander MCQueen\n','Balenciaga'];
+    function displayProducts(){
+        let table = "";
+        for ( let i  = 0  ; i < danhsach.length ; i ++) {
+                table += '<tr>';
+                table += '<td>' + [i + 1] + " ";
+                table += '<td>' + danhsach[i];
+                table += '<td>' + '<button onclick="edit(' + i + ')"> Edit </button>';
+                table += '<td>' + '<button onclick="del(' + i + ')"> Delete </button>';
+                table += '<td>' + '<button onclick="buy(' + i + ')">Buy</button>';
+                table += '</tr>';
+            }
+        document.getElementById("productList").innerHTML = table;
+    }
+    displayProducts();
+    function add() {
+        let b = document.getElementById("add").value;
+        if (b.length== 0){
+            alert("Bạn chưa nhập")
+        }
+        else {
+            danhsach.push(b);
+            displayProducts();
+        }
+    }
+    function del(tom) {
+        danhsach.splice(tom,1);
+        displayProducts();
+    }
+    function edit(i) {
+        let newName = prompt("Nhập tên mới");
+        danhsach[i] = newName;
+        displayProducts();
+    }
+    function buy(i) {
+        if (confirm("Bạn đã xem kĩ thông tin sản phẩm của chúng tôi chưa??")){
+        }
+        else {
+            return 0;
+        }
+        if (confirm("Bạn có thật sự muốn mua "+ danhsach[i] + " không???" )){
+            alert("thanks you!! bạn đã mua thành công!!")
+        }
+        else {
+            alert("Ok fine :((")
+        }
+        displayProducts();
+    }
+</script>
+</body>
+</html>
